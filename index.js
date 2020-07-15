@@ -86,7 +86,16 @@ app.use('/graphql', graphqlHTTP({
     schema: schema,
     rootValue: root,
     // Enable the GraphiQL UI
-    graphiql: true,
+    graphiql: {
+        defaultQuery: "query {\n" +
+            "  course(id: 1) {\n" +
+            "    title\n" +
+            "    trainer\n" +
+            "    url\n" +
+            "  }\n" +
+            "}"
+    },
+
 }));
 
 app.listen(4000);
