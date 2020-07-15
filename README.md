@@ -15,7 +15,9 @@ You should then be able to access the GraphiQL UI by visting [http://localhost:4
 query {
   course(id: 1) {
     title
-    trainer
+    trainer {
+      name
+    }
     url
   }
 }
@@ -27,7 +29,14 @@ query {
   "data": {
     "course": {
       "title": "Full Stack Track",
-      "trainer": "Ashley Coles, Mike Oram",
+      "trainer": [
+        {
+          "name": "Ashley Coles"
+        },
+        {
+          "name": "Mike Oram"
+        }
+      ],
       "url": "https://mayden.academy/full-stack-track/"
     }
   }
@@ -40,10 +49,14 @@ query {
 query {
   courses {
     title
-    trainer
+    trainer {
+      id
+      name
+    }
     url
   }
 }
+
 ```
 
 #### Response
@@ -53,17 +66,36 @@ query {
     "courses": [
       {
         "title": "Full Stack Track",
-        "trainer": "Ashley Coles, Mike Oram",
+        "trainer": [
+          {
+            "id": 2,
+            "name": "Ashley Coles"
+          },
+          {
+            "id": 1,
+            "name": "Mike Oram"
+          }
+        ],
         "url": "https://mayden.academy/full-stack-track/"
       },
       {
         "title": "Working with Developers Workshop",
-        "trainer": "Mike Oram",
+        "trainer": [
+          {
+            "id": 1,
+            "name": "Mike Oram"
+          }
+        ],
         "url": "https://mayden.academy/working-with-developers-workshop/"
       },
       {
         "title": "Introduction to WordPress for Developers",
-        "trainer": "Ashley Coles",
+        "trainer": [
+          {
+            "id": 2,
+            "name": "Ashley Coles"
+          }
+        ],
         "url": "https://mayden.academy/introduction-to-wordpress-for-developers/"
       }
     ]
@@ -77,7 +109,9 @@ query {
 query {
   courses(topic: "Full Stack") {
     title
-    trainer
+    trainer {
+      name
+    }
     url
   }
 }
@@ -90,7 +124,14 @@ query {
     "courses": [
       {
         "title": "Full Stack Track",
-        "trainer": "Ashley Coles, Mike Oram",
+        "trainer": [
+          {
+            "name": "Ashley Coles"
+          },
+          {
+            "name": "Mike Oram"
+          }
+        ],
         "url": "https://mayden.academy/full-stack-track/"
       }
     ]
@@ -104,7 +145,6 @@ query {
 mutation {
   updateCourseTopic(id: 1, topic: "cheese!") {
     title
-    trainer
     topic
     url
   }
@@ -117,7 +157,6 @@ mutation {
   "data": {
     "updateCourseTopic": {
       "title": "Full Stack Track",
-      "trainer": "Ashley Coles, Mike Oram",
       "topic": "cheese!",
       "url": "https://mayden.academy/full-stack-track/"
     }
@@ -132,9 +171,17 @@ mutation {
 type Course {
     id: Int
     title: String
-    trainer: String
+    trainer: [Trainer]
     description: String
     topic: String
     url: String
-  }
+}
+```
+
+### Trainer
+```
+type Trainer {
+    id: Int
+    name: String
+}
 ```

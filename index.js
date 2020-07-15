@@ -14,10 +14,14 @@ var schema = buildSchema(`
   type Course {
     id: Int
     title: String
-    trainer: String
+    trainer: [Trainer]
     description: String
     topic: String
     url: String
+  }
+  type Trainer {
+    id: Int
+    name: String
   }
 `);
 
@@ -26,7 +30,16 @@ var coursesData = [
     {
         id: 1,
         title: 'Full Stack Track',
-        trainer: 'Ashley Coles, Mike Oram',
+        trainer: [
+            {
+                id: 2,
+                name: 'Ashley Coles'
+            },
+            {
+                id: 1,
+                name: 'Mike Oram'
+            }
+        ],
         description: 'In 16 weeks, we’ll teach you all you need to land your first job as a junior software developer.',
         topic: 'Full Stack',
         url: 'https://mayden.academy/full-stack-track/'
@@ -34,7 +47,12 @@ var coursesData = [
     {
         id: 2,
         title: 'Working with Developers Workshop',
-        trainer: 'Mike Oram',
+        trainer: [
+            {
+                id: 1,
+                name: 'Mike Oram'
+            }
+        ],
         description: 'Do you work closely with software developers in your business, but don’t really understand the world of coding? Would you like your projects to run more effectively?',
         topic: 'Working with Developers',
         url: 'https://mayden.academy/working-with-developers-workshop/'
@@ -42,7 +60,12 @@ var coursesData = [
     {
         id: 3,
         title: 'Introduction to WordPress for Developers',
-        trainer: 'Ashley Coles',
+        trainer: [
+            {
+                id: 2,
+                name: 'Ashley Coles'
+            }
+        ],
         description: 'This one day online workshop is for developers who would like to learn more about working with WordPress.',
         topic: 'WordPress',
         url: 'https://mayden.academy/introduction-to-wordpress-for-developers/'
