@@ -124,3 +124,17 @@ mutation {
   }
 }
 ```
+
+## Available types/resources
+
+### Course
+```
+type Course {
+    id: Int
+    title: String
+    trainer: String
+    description: String
+    topic: String
+    url: String
+  }
+```
