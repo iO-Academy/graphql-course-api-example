@@ -1,5 +1,5 @@
 # An example GraphQL API
-Built with Node.JS, Express and the express-graphql package.
+Built with Node.JS, Express and the [express-graphql](https://github.com/graphql/express-graphql) package.
 ## Install steps
 1) Firstly clone this repo locally
 2) Run `npm install` to install the project dependencies
