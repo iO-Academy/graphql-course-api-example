@@ -4,23 +4,38 @@ var { buildSchema } = require('graphql');
 
 // Construct a schema, using GraphQL schema language
 var schema = buildSchema(`
+  "All available queries"
   type Query {
+    "Fetch a single course by ID"
     course(id: Int!): Course
+    "Fetch a list of courses based on topic, provide no topic to get all courses"
     courses(topic: String): [Course]
   }
+  "All available mutations"
   type Mutation {
+    "Update the topic of a given course based on ID"
     updateCourseTopic(id: Int!, topic: String!): Course
   }
+  "A course object"
   type Course {
+    "Course ID"
     id: Int
+    "The name of the course"
     title: String
+    "An array of trainer objects"
     trainer: [Trainer]
+    "Short text description of course content"
     description: String
+    "A topic tag"
     topic: String
+    "Link to the course on the academy site"
     url: String
   }
+  "A trainer object"
   type Trainer {
+    "The trainer ID"
     id: Int
+    "First and last name"
     name: String
   }
 `);
